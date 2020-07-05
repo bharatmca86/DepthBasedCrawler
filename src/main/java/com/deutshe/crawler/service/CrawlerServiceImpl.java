@@ -112,6 +112,9 @@ public class CrawlerServiceImpl implements CrawlerService {
 		Set<ChildResponse> detailsSet = new HashSet<>();
 		int images = 0;
 		Status statusEnum = lookup(Status.class, status);
+		if(statusEnum==null) {
+			return new Response();
+		}
 		List<CrawledEntity> entities = repository.findByStatus(statusEnum.ordinal());
 		for(CrawledEntity entity: entities) {
 			ChildResponse details = new ChildResponse();
